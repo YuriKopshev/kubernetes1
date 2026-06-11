@@ -1,17 +1,15 @@
-# Домашнее задание к занятию "`Запуск приложений в K8S`"
+# Домашнее задание к занятию "`Сетевое взаимодействие в K8S`"
 
 
 
- ## Скриншоты задания №1
-![скриншот количество подов до и после масштабирования](https://github.com/YuriKopshev/kubernetes1/blob/main/img/Screenshot1.png);
-
-![скриншот curl, что из пода есть доступ до приложений из п.1](https://github.com/YuriKopshev/kubernetes1/blob/main/img/Screenshot1.2.png);
+ ## Скриншот задания №1
+![доступ с помощью curl по доменному имени сервиса](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task1.png);
 
 
- ## Скриншоты задания №2
-![скриншот остояние пода до запуска сервиса](https://github.com/YuriKopshev/kubernetes1/blob/main/img/Screenshot2.png);
+ ## Скриншот задания №2
+![curl с локального компьютера](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
 
-![скриншот остояние пода после запуска сервиса](https://github.com/YuriKopshev/kubernetes1/blob/main/img/Screenshot2.1.png);
+
 
 
  
