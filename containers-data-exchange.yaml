@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-exchange
+  namespace: default
+  labels:
+    app: data-exchange
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-exchange
+  template:
+    metadata:
+      labels:
+        app: data-exchange
+    spec:
+      # Общий временный том для контейнеров внутри одного Пода
+      volumes:
+        - name: shared-volume
+          emptyDir: {}
+      containers:
+        # Первый контейнер: пишет дату каждые 5 секунд
+        - name: busybox
+          image: busybox:stable
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              while true; do
+                echo "$(date): Данные от busybox" >> /share/shared-file.txt;
+                sleep 5;
+              done
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /share
+
+        # Второй контейнер: имеет доступ к файлу на чтение
+        - name: multitool
+          image: wbitt/network-multitool
+          env:
+            - name: HTTP_PORT
+              value: "8080"
+            - name: HTTPS_PORT
+              value: "11443"
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /share

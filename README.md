@@ -1,15 +1,37 @@
-# Домашнее задание к занятию "`Сетевое взаимодействие в K8S`"
+# Домашнее задание к занятию "`Хранение в K8s`"
 
 
 
- ## Скриншот задания №1
-![доступ с помощью curl по доменному имени сервиса](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task1.png);
+ ## Скриншоты задания №1
+![описание пода с контейнерами (kubectl describe pods data-exchange)]();
+![вывод команды чтения файла (tail -f <имя общего файла>)]();
 
 
- ## Скриншот задания №2
-![curl с локального компьютера](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
+ ## Скриншоты задания №2
+![шаг2](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
+![шаг3](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
+![шаг 4 и шаг 5 ](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
+
+### Объяснение для Шага 4:
+
+Что произошло с PV:
+
+В выводе команды kubectl describe pv local-pv мы видим, что статус изменился на Status: Released. При этом в поле Claim всё еще сохраняется ссылка на старый, уже удаленный запрос — default/local-pvc.Почему это произошло:Политика Reclaim Policy: Retain. В манифесте нашего PV была явно указана политика сохранения данных Retain. Это заставляет Kubernetes бережно относиться к ресурсу.Защита данных от перезаписи. Когда мы удалили PVC (local-pvc), кластер перевел PV в статус Released («Освобожден»). В этом состоянии PV считается занятым историческими данными. Kubernetes намеренно блокирует этот PV и не позволяет связывать его с новыми PVC, чтобы предотвратить случайную перезапись или утечку чужих данных.
+
+### Объяснение для Шага 5:
+
+Что произошло с файлом после удаления PV:
+
+Файл pv-file.txt полностью сохранился на локальном диске ноды и остался доступен для чтения даже после того, как сам объект PersistentVolume был окончательно удален из кластера Kubernetes.Почему это произошло:Тип хранилища hostPath связывает PV с конкретной папкой на физическом диске хоста (в нашем случае — внутри контейнера ноды kind). Архитектура Kubernetes устроена так, что удаление логических абстракций внутри кластера (объектов PV и PVC) никогда автоматически не удаляет файлы на реальных физических дисках для типа hostPath. Это сделано для безопасности, чтобы предотвратить потерю важных данных. Администратор сервера должен очищать такие локальные директории на нодах вручную.
+
+
+ ## Скриншоты задания №3
+![шаг №2](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
+![шаг №3](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
 
 
 
 
  
+
+

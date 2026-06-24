@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sc-exchange
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sc-exchange
+  template:
+    metadata:
+      labels:
+        app: sc-exchange
+    spec:
+      volumes:
+        - name: sc-storage
+          persistentVolumeClaim:
+            claimName: sc-pvc
+      containers:
+        - name: busybox
+          image: busybox:stable
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              while true; do
+                echo "$(date): Запись через StorageClass" >> /mnt/sc-data/sc-file.txt;
+                sleep 5;
+              done
+          volumeMounts:
+            - name: sc-storage
+              mountPath: /mnt/sc-data
+        - name: multitool
+          image: wbitt/network-multitool
+          env:
+            - name: HTTP_PORT
+              value: "8080"
+            - name: HTTPS_PORT
+              value: "11443"
+          volumeMounts:
+            - name: sc-storage
+              mountPath: /mnt/sc-data
