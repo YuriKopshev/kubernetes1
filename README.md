@@ -3,14 +3,14 @@
 
 
  ## Скриншоты задания №1
-![описание пода с контейнерами (kubectl describe pods data-exchange)]();
-![вывод команды чтения файла (tail -f <имя общего файла>)]();
+![описание пода с контейнерами (kubectl describe pods data-exchange)](https://github.com/YuriKopshev/kubernetes1/blob/origin/homework-4/img/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82-24-06-2026%2014_26_56.png);
+![вывод команды чтения файла (tail -f <имя общего файла>)](https://github.com/YuriKopshev/kubernetes1/blob/origin/homework-4/img/Screenshot%202026-06-24%20at%2018.31.07.png);
 
 
  ## Скриншоты задания №2
-![шаг2](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
-![шаг3](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
-![шаг 4 и шаг 5 ](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
+![шаг2](https://github.com/YuriKopshev/kubernetes1/blob/origin/homework-4/img/Screenshot%202026-06-24%20at%2018.59.16.png);
+![шаг3](https://github.com/YuriKopshev/kubernetes1/blob/origin/homework-4/img/Screenshot%202026-06-24%20at%2019.01.37.png);
+![шаг 4 и шаг 5](https://github.com/YuriKopshev/kubernetes1/blob/origin/homework-4/img/Screenshot%202026-06-24%20at%2019.08.49.png);
 
 ### Объяснение для Шага 4:
 
@@ -26,8 +26,8 @@
 
 
  ## Скриншоты задания №3
-![шаг №2](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
-![шаг №3](https://github.com/YuriKopshev/kubernetes1/blob/homework-3/img/Screenshot_task2.png);
+![шаг №2](https://github.com/YuriKopshev/kubernetes1/blob/origin/homework-4/img/Screenshot3.png);
+![шаг №3](https://github.com/YuriKopshev/kubernetes1/blob/origin/homework-4/img/Screenshot3.1.png);
 
 
 
