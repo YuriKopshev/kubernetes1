@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pv-exchange
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pv-exchange
+  template:
+    metadata:
+      labels:
+        app: pv-exchange
+    spec:
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: local-pvc
+      containers:
+        - name: busybox
+          image: busybox:stable
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              while true; do
+                echo "$(date): Запись в PersistentVolume" >> /mnt/pv-data/pv-file.txt;
+                sleep 5;
+              done
+          volumeMounts:
+            - name: pv-storage
+              mountPath: /mnt/pv-data
+        - name: multitool
+          image: wbitt/network-multitool
+          env:
+            - name: HTTP_PORT
+              value: "8080"
+            - name: HTTPS_PORT
+              value: "11443"
+          volumeMounts:
+            - name: pv-storage
+              mountPath: /mnt/pv-data
